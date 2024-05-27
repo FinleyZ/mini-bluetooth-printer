@@ -1,0 +1,62 @@
+# STM32CubeMX generated files
+*.log
+
+# Keil specific files
+*.uvprojx
+*.uvoptx
+*.uvgui.*
+*.dep
+*.crf
+*.rteconfig
+*.htm
+
+# Eclipse specific files
+.cproject
+.project
+*.launch
+
+# STM32CubeIDE specific files
+.settings/
+/.metadata/
+
+# Build directories
+/Debug/
+/Release/
+/build/
+/bin/
+/obj/
+/out/
+
+# Compiled object files
+*.o
+*.a
+*.d
+*.elf
+*.hex
+*.bin
+*.axf
+*.map
+*.lst
+*.srec
+*.h25
+*.out
+*.dmp
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Logs
+*.log
+*.log.*
+
+# Backup files
+*.bak
+*.old
+*.swp
+*~
+
+# System files
+.DS_Store
+Thumbs.db
