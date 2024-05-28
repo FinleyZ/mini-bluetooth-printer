@@ -4,11 +4,8 @@
 1. [Project Overview](#project-overview)
 2. [Hardware Design](#hardware-design)
 3. [Software Design](#software-design)
-4. [Getting Started](#getting-started)
-5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [License](#license)
-8. [Acknowledgements](#acknowledgements)
+4. [Usage](#usage)
+5. [Demonstration](#demonstration)
 
 ## Project Overview
 The Mini-Printer project aims to develop a small, portable thermal printer based on the STM32 microcontroller. This project involves both hardware and software components to create a fully functional mini-printer capable of printing text and simple graphics.
@@ -75,3 +72,6 @@ These images provide a clear view of the component placement and routing on the 
 - **Framework**: STM32CubeMX
 - **Programming Language**: C
 
+## Usage
+
+## Demonstration
