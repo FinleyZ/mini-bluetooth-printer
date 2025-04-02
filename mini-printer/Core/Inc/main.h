@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -59,8 +59,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define POWER_ADC_Pin GPIO_PIN_0
 #define POWER_ADC_GPIO_Port GPIOA
-#define TAMP_ADC_Pin GPIO_PIN_1
-#define TAMP_ADC_GPIO_Port GPIOA
 #define USART2_BLE_RX_Pin GPIO_PIN_2
 #define USART2_BLE_RX_GPIO_Port GPIOA
 #define USART2_BLE_TX_Pin GPIO_PIN_3
