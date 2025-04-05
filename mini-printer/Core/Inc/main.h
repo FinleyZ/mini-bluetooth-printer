@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define POWER_ADC_Pin GPIO_PIN_0
 #define POWER_ADC_GPIO_Port GPIOA
+#define TEMPERATURE_ADC_Pin GPIO_PIN_1
+#define TEMPERATURE_ADC_GPIO_Port GPIOA
 #define USART2_BLE_RX_Pin GPIO_PIN_2
 #define USART2_BLE_RX_GPIO_Port GPIOA
 #define USART2_BLE_TX_Pin GPIO_PIN_3
@@ -83,6 +85,7 @@ void Error_Handler(void);
 #define STB6_GPIO_Port GPIOB
 #define VHINT_Pin GPIO_PIN_8
 #define VHINT_GPIO_Port GPIOA
+#define VHINT_EXTI_IRQn EXTI9_5_IRQn
 #define USART1_LOG_TX_Pin GPIO_PIN_9
 #define USART1_LOG_TX_GPIO_Port GPIOA
 #define USART1_LOG_RX_Pin GPIO_PIN_10

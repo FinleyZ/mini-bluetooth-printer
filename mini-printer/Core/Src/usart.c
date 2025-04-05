@@ -22,6 +22,9 @@
 
 /* USER CODE BEGIN 0 */
 
+#include "em_ble.h"
+uint8_t aRxBuffer;	
+
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
@@ -110,7 +113,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 
     GPIO_InitStruct.Pin = USART1_LOG_RX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(USART1_LOG_RX_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN USART1_MspInit 1 */
@@ -137,10 +140,17 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 
     GPIO_InitStruct.Pin = USART2_BLE_TX_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(USART2_BLE_TX_GPIO_Port, &GPIO_InitStruct);
 
+    /* USART2 interrupt Init */
+    HAL_NVIC_SetPriority(USART2_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspInit 1 */
+
+    /* USART2 interrupt Init */
+    HAL_NVIC_SetPriority(USART2_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
 
   /* USER CODE END USART2_MspInit 1 */
   }
@@ -181,7 +191,10 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     */
     HAL_GPIO_DeInit(GPIOA, USART2_BLE_RX_Pin|USART2_BLE_TX_Pin);
 
+    /* USART2 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspDeInit 1 */
+    HAL_NVIC_DisableIRQ(USART2_IRQn);
 
   /* USER CODE END USART2_MspDeInit 1 */
   }
@@ -189,4 +202,11 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	if(huart->Instance == USART2){
+			uart_cmd_handle(aRxBuffer);
+			HAL_UART_Receive_IT(&huart2, (uint8_t *)&aRxBuffer, 1);
+	}
+
+}
 /* USER CODE END 1 */

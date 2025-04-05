@@ -96,7 +96,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PA0-WKUP     ------> ADC1_IN0
     PA1     ------> ADC1_IN1
     */
-    GPIO_InitStruct.Pin = POWER_ADC_Pin|GPIO_PIN_1;
+    GPIO_InitStruct.Pin = POWER_ADC_Pin|TEMPERATURE_ADC_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
@@ -121,7 +121,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     PA0-WKUP     ------> ADC1_IN0
     PA1     ------> ADC1_IN1
     */
-    HAL_GPIO_DeInit(GPIOA, POWER_ADC_Pin|GPIO_PIN_1);
+    HAL_GPIO_DeInit(GPIOA, POWER_ADC_Pin|TEMPERATURE_ADC_Pin);
 
   /* USER CODE BEGIN ADC1_MspDeInit 1 */
 

@@ -27,7 +27,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
+#include "em_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,7 +61,7 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern uint8_t aRxBuffer;			
 /* USER CODE END 0 */
 
 /**
@@ -98,8 +99,11 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
-  /* USER CODE END 2 */
+  // new code`````````````````````````````
+	printf("----app init v1.0.9----\n");
+	HAL_UART_Receive_IT(&huart2, (uint8_t *)&aRxBuffer, 1);
+	init_task();
+ /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
   MX_FREERTOS_Init();
@@ -167,6 +171,32 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+// new code-----------------------------------------------
+#include "usart.h"  // Provides access to the huart1 UART handle for printf redirection
+
+/**
+ * @brief  Low-level write function used by the C library (newlib) for printf().
+ * 
+ * This function is called internally by printf() and other formatted output functions.
+ * It transmits a string of characters over USART1 by using HAL_UART_Transmit.
+ * 
+ * By overriding _write(), we enable printf() to send output to a UART terminal,
+ * such as through a USB-to-Serial adapter connected to USART1 TX.
+ *
+ * @param file  File descriptor (ignored in this context)
+ * @param ptr   Pointer to the character buffer to send
+ * @param len   Number of characters to send
+ * @retval int  The number of bytes written
+ */
+int _write(int file, char *ptr, int len)
+{
+  // Send the entire buffer over USART1
+  HAL_UART_Transmit(&huart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+
+  // Return number of bytes written
+  return len;
+}
 
 /* USER CODE END 4 */
 
